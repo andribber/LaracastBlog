@@ -20,6 +20,10 @@ Route::post('post/{post:slug}/comment', [CommentController::class, 'store']);
 //Register
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::delete('admin/users/{user:id}', [RegisterController::class, 'destroy'])->middleware('can:admin');
+Route::get('admin/users', [RegisterController::class, 'manage'])->middleware('can:admin');
+Route::get('admin/users/{user:id}/edit', [RegisterController::class, 'edit'])->middleware('can:admin');
+Route::patch('admin/users/{user:id}', [RegisterController::class, 'update'])->middleware('can:admin');
 
 //Session
 Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');

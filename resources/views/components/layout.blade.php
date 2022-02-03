@@ -19,15 +19,22 @@
             <div class="mt-8 md:mt-0">
 
                 <a href="{{route('home')}}" class="bg-blue-500 ml-3 mr-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">Home Page</a>
+
+                @cannot('admin')
                 <a href="#newsletter" class="bg-blue-500 ml-3 mr-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
+                @endcannot
+
                 @can('admin')
                 <a href="/admin/posts/create" class="bg-blue-500 ml-3 mr-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Create a new post
                 </a>
                 <a href="/admin/posts" class="bg-blue-500 ml-3 mr-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Edit a post
+                </a>
+                <a href="/admin/users" class="bg-blue-500 ml-3 mr-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    Edit a user
                 </a>
                 @endcan
             </div>

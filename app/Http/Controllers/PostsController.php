@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
@@ -79,4 +80,7 @@ class PostsController extends Controller
         $post->delete();
         return back()->with('success', 'Your post has been deleted');
     }
+
+
+
 }

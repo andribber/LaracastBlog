@@ -29,4 +29,35 @@ class RegisterController extends Controller
 
         return redirect('/home')->with('Success', 'Your account has been created.');;
     }
+
+    public function update(User $user) {
+
+        $attributes = request()->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'is_admin' => 'required',
+        ]);
+
+        $user->update($attributes);
+
+        return back()->with('success', 'Your user has been succesfully updated');
+    }
+
+    public function destroy(User $user) {
+        $user->delete();
+        return back()->with('success', 'This user has been deleted');
+    }
+
+    public function manage(){
+        return view('admin-users', [
+            'users' => User::paginate(50),
+        ]);
+    }
+
+    public function edit (User $user){
+        return view('register.edit-user', ['user'=>$user]);
+    }
+
 }
